@@ -3,7 +3,6 @@ class InfoRetreval{
 public static void main(String args[]){  
 try{  
 Class.forName("com.mysql.jdbc.Driver");  
-//here AppInformation is database name, root is username and password
     try (Connection con = DriverManager.getConnection(  
             "jdbc:mysql://localhost:3306/AppInformation","root","password")) {
         //here AppInformation is database name, root is username and password is password
