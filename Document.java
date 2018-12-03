@@ -1,10 +1,9 @@
 
 public class Document {
-	public int ID,totalReviews;
-	public String APP_Name, Genre , UserReview, Price;
-	public double User_Rating;
+	public int ID;
+	public String APP_Name, Genre , UserReview, Price, User_Rating, totalReviews;
 	
-	public Document( int ID, String APP_Name, String Genre , String Price, double User_Rating ,int totalReviews ,String UserReview)
+	public Document( int ID, String APP_Name, String Genre , String Price, String User_Rating ,String totalReviews ,String UserReview)
 	{
 		this.ID = ID;
 		this.totalReviews = totalReviews;
@@ -33,11 +32,11 @@ public class Document {
 		ID = iD;
 	}
 
-	public int getTotalReviews() {
+	public String getTotalReviews() {
 		return totalReviews;
 	}
 
-	public void setTotalReviews(int totalReviews) {
+	public void setTotalReviews(String totalReviews) {
 		this.totalReviews = totalReviews;
 	}
 
@@ -65,11 +64,11 @@ public class Document {
 		UserReview = userReview;
 	}
 
-	public double getUser_Rating() {
+	public String getUser_Rating() {
 		return User_Rating;
 	}
 
-	public void setUser_Rating(double user_Rating) {
+	public void setUser_Rating(String user_Rating) {
 		User_Rating = user_Rating;
 	}
 
