@@ -57,4 +57,9 @@ public class DocList extends ArrayList<Document>{
 	{
 		return this.DocList;
 	}
+	
+	public Document getDoc(int index)
+	{
+		return DocList.get(index);
+	}
 }
