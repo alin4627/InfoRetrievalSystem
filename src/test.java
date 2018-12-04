@@ -4,11 +4,22 @@ import java.io.*;    // Provides FileReader, FileNotFoundException
 public class test {
 
     public static void main(String[] args) throws IOException {
-    	DocList x = new DocList("src/data.csv");
+    	Scanner scanner = new Scanner(System.in);
+    	System.out.println("App store (1) or Google Play Store (2): ");
+    	String q = scanner.nextLine();
+    	int csv = Integer.parseInt(q);
+    	DocList x;
+    	if (csv==1)
+    	{
+    		x = new DocList("src/appdata.csv");
+    	}
+    	else
+    	{
+    		 x = new DocList("src/playdata.csv");
+    	}
     	invertIndex y = new invertIndex(x.getDocList());
     	System.out.println("Enter your search query: ");
-    	Scanner scanner = new Scanner(System.in);
-    	String q = scanner.nextLine();
+    	q = scanner.nextLine();
     	invertIndex z = new invertIndex(q);
 
     	invertIndex sharedWords = z.sharedWords(y);
