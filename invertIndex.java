@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,8 +8,7 @@ import java.util.Map;
 public class invertIndex {
 	
 			public Map<String, Map<Integer, Integer>> wordToDocumentMap;
-			
-			
+
 			public invertIndex( List<Document> input ) throws IOException{
 				wordToDocumentMap = new LinkedHashMap<String, Map<Integer, Integer>>();
 				int currentDocID;
@@ -82,7 +82,6 @@ public class invertIndex {
 				invertIndex output = new invertIndex(mapr);
 					for (Map.Entry<String, Map<Integer,Integer>> wordinQuery:  wordToDocumentMap.entrySet()){
 						String currentWord = wordinQuery.getKey();
-						Map<Integer, Integer> qWordCount = wordinQuery.getValue();
 						for( Map.Entry<String, Map<Integer,Integer>> wordinIndex: i1.getMap().entrySet()){
 							String storedWords = wordinIndex.getKey();
 							Map<Integer, Integer> documentsWordCount = wordinIndex.getValue();
@@ -96,7 +95,7 @@ public class invertIndex {
 				return output;	
 			}
 			
-			public Map<Integer,Integer> innerProd( invertIndex input ){
+			public Map<Integer,Integer> similarity( invertIndex input ){
 				Map<Integer,Integer> output = new LinkedHashMap<Integer,Integer>();
 				for (Map.Entry<String, Map<Integer,Integer>> wordinQuery:  wordToDocumentMap.entrySet()){
 					String currentWord =  wordinQuery.getKey();
@@ -119,7 +118,7 @@ public class invertIndex {
 						    //	    System.out.println("currentCount after null: "+currentCount);
 						    	}
 								if (q1>0 && m1>0){
-									currentCount = currentCount+1;
+									currentCount = currentCount+(q1*m1);
 									output.put(d1, currentCount);
 							//		System.out.println("currentCount in output: "+currentCount);
 								}
@@ -127,12 +126,23 @@ public class invertIndex {
 				
 						}
 					}
-				}
+				}/* display similarities
 				for(Map.Entry<Integer, Integer> documentToFrequency : output.entrySet()) {
 		            Integer document = documentToFrequency.getKey();
 		            Integer wordCount = documentToFrequency.getValue();
 		           System.out.println( "Document " + document + " has a inner product of "+ wordCount);
-		        }
+		        }*/
+				
+				return output;
+			}
+			
+			public List<Integer> rankList( Map<Integer,Integer> input ){
+				List<Integer> output = new ArrayList<Integer>();
+				Map<Integer,Integer> tempMap = MapUtil.sortByValue(input);
+				for(Map.Entry<Integer, Integer> documentToFrequency : tempMap.entrySet()) {
+					Integer document = documentToFrequency.getKey();
+					output.add(document - 1);
+				}
 				
 				return output;
 			}
@@ -150,7 +160,8 @@ public class invertIndex {
 					        }
 						}
 			}
-				
+			
+			
 			public Map<String, Map<Integer, Integer>> getMap(){
 					return wordToDocumentMap;
 			}

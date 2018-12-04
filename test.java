@@ -12,9 +12,18 @@ public class test {
     	invertIndex z = new invertIndex(q);
 
     	invertIndex sharedWords = z.sharedWords(y);
-    	z.innerProd(sharedWords);
+    	z.similarity(sharedWords);
+    	List p = z.rankList(z.similarity(sharedWords));
+    	System.out.println(p);
+    	x.printArray(p);
     	scanner.close();
     }
     
-   
+    public static void printMap( Map<Integer, Integer> input ){ 
+		for(Map.Entry<Integer, Integer> documentToFrequency : input.entrySet()) {
+            Integer document = documentToFrequency.getKey();
+            Integer wordCount = documentToFrequency.getValue();
+           System.out.println( "Document " + document + " has a inner product of "+ wordCount);
+		}
+	}
 }

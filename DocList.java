@@ -53,6 +53,12 @@ public class DocList extends ArrayList<Document>{
     	scanner.close();
     }
 	
+	public void printArray( List<Integer> input ){
+		for ( int i = input.size()-1; i >=0 ; i--){
+			System.out.print(DocList.get(input.get(i)));
+		}
+	}
+	
 	public List<Document> getDocList()
 	{
 		return this.DocList;
